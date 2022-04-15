@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get 'hello_world', to: 'hello_world#index'
-  resources :patients, :path => :pacientes
-  resources :specialties, :path => :especialidades
+  resources :patients
+  resources :specialties
 end

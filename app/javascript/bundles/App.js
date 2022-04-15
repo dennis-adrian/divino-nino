@@ -1,18 +1,20 @@
 import React from 'react';
-
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
+import "./App.scss";
 
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-import Home from 'bundles/components/home'
-import ReservationPage from 'bundles/components/reservation_page';
+import Home from 'bundles/components/home_page'
+import ReservationsPage from 'bundles/components/reservations_page';
+import PatientsPage from 'bundles/components/patients_page';
+import ReportsPage from 'bundles/components/reports_page'
 
 const App = () => {
   return (
@@ -20,15 +22,15 @@ const App = () => {
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand>
-            <Link to="/">Clínica Divino Niño</Link>
+            <Link className="home-button" to="/">Clínica Divino Niño</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/">Home</Link>
-              <Link to="/reservas">Reservas</Link>
-              <Link to="/pacientes">Pacientes</Link>
-              <Link to="/reportes">Reportes</Link>
+              <Link className="link" to="/">Home</Link>
+              <Link className="link" to="/reservas">Reservas</Link>
+              <Link className="link" to="/pacientes">Pacientes</Link>
+              <Link className="link" to="/reportes">Reportes</Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -36,7 +38,9 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/reservas" element={<ReservationPage />} />
+        <Route path="/reservas" element={<ReservationsPage />} />
+        <Route path="/pacients" element={<PatientsPage />} />
+        <Route path="/reportes" element={<ReportsPage />} />
       </Routes>
     </Router>
   )
