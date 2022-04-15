@@ -1,0 +1,18 @@
+= form_with(model: @office) do |form|
+  - if @office.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@office.errors.count, 'error')} prohibited this office from being saved:"
+      ul
+        - @office.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :room, style: "display: block"
+    = form.text_field :room
+
+  div
+    = form.label :specialty_id, style: "display: block"
+    = form.text_field :specialty_id
+
+  div
+    = form.submit
