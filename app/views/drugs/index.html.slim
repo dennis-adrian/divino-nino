@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Drugs
+
+#drugs
+  - @drugs.each do |drug|
+    == render drug
+    p
+      = link_to "Show this drug", drug
+
+= link_to "New drug", new_drug_path

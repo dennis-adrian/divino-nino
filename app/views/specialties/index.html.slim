@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Specialties
+
+#specialties
+  - @specialties.each do |specialty|
+    == render specialty
+    p
+      = link_to "Show this specialty", specialty
+
+= link_to "New specialty", new_specialty_path

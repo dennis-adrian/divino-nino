@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Doctors
+
+#doctors
+  - @doctors.each do |doctor|
+    == render doctor
+    p
+      = link_to "Show this doctor", doctor
+
+= link_to "New doctor", new_doctor_path
