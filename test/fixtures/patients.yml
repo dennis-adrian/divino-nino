@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identification: MyString
+  first_name: MyString
+  last_name: MyString
+  birth_date: 2022-04-15
+  sex: MyString
+  email: MyString
+  phone: MyString
+  address: MyText
+  blood_type: MyString
+  weight: 1
+  height: 1
+  is_pregnant: false
+  menstruation_date: 2022-04-15
+  has_menopause: false
+  has_reservation: false
+  last_medical_appointment: 2022-04-15
+
+two:
+  identification: MyString
+  first_name: MyString
+  last_name: MyString
+  birth_date: 2022-04-15
+  sex: MyString
+  email: MyString
+  phone: MyString
+  address: MyText
+  blood_type: MyString
+  weight: 1
+  height: 1
+  is_pregnant: false
+  menstruation_date: 2022-04-15
+  has_menopause: false
+  has_reservation: false
+  last_medical_appointment: 2022-04-15

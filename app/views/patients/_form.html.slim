@@ -1,0 +1,74 @@
+= form_with(model: @patient) do |form|
+  - if @patient.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@patient.errors.count, 'error')} prohibited this patient from being saved:"
+      ul
+        - @patient.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :identification, style: "display: block"
+    = form.text_field :identification
+
+  div
+    = form.label :first_name, style: "display: block"
+    = form.text_field :first_name
+
+  div
+    = form.label :last_name, style: "display: block"
+    = form.text_field :last_name
+
+  div
+    = form.label :birth_date, style: "display: block"
+    = form.date_field :birth_date
+
+  div
+    = form.label :sex, style: "display: block"
+    = form.text_field :sex
+
+  div
+    = form.label :email, style: "display: block"
+    = form.text_field :email
+
+  div
+    = form.label :phone, style: "display: block"
+    = form.text_field :phone
+
+  div
+    = form.label :address, style: "display: block"
+    = form.text_area :address
+
+  div
+    = form.label :blood_type, style: "display: block"
+    = form.text_field :blood_type
+
+  div
+    = form.label :weight, style: "display: block"
+    = form.number_field :weight
+
+  div
+    = form.label :height, style: "display: block"
+    = form.number_field :height
+
+  div
+    = form.label :is_pregnant, style: "display: block"
+    = form.check_box :is_pregnant
+
+  div
+    = form.label :menstruation_date, style: "display: block"
+    = form.date_field :menstruation_date
+
+  div
+    = form.label :has_menopause, style: "display: block"
+    = form.check_box :has_menopause
+
+  div
+    = form.label :has_reservation, style: "display: block"
+    = form.check_box :has_reservation
+
+  div
+    = form.label :last_medical_appointment, style: "display: block"
+    = form.date_field :last_medical_appointment
+
+  div
+    = form.submit
