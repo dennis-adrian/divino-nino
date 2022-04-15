@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_152930) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_153309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doctor_specialties", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.bigint "specialty_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_doctor_specialties_on_doctor_id"
+    t.index ["specialty_id"], name: "index_doctor_specialties_on_specialty_id"
+  end
 
   create_table "doctors", force: :cascade do |t|
     t.string "identification", limit: 50
@@ -62,4 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_152930) do
     t.text "description"
   end
 
+  add_foreign_key "doctor_specialties", "doctors"
+  add_foreign_key "doctor_specialties", "specialties"
 end
