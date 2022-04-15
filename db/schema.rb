@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_175402) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_182408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "blood_type", ["a_positive", "a_negative", "b_positive", "b_negative", "o_positive", "o_negative", "ab_positive", "ab_negative"]
   create_enum "sex", ["male", "female", "non_binary"]
 
   create_table "contraceptive_types", force: :cascade do |t|
@@ -80,7 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_175402) do
     t.string "email", limit: 200
     t.string "phone", limit: 50
     t.text "address"
-    t.string "blood_type", limit: 20
     t.integer "weight"
     t.integer "height"
     t.boolean "is_pregnant"
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_175402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.enum "sex", default: "male", null: false, enum_type: "sex"
+    t.enum "blood_type", enum_type: "blood_type"
   end
 
   create_table "schedules", force: :cascade do |t|
