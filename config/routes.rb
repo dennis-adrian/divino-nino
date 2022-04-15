@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :clients
+  resources :invoices
+  resources :reservations
+  resources :reservation_fees
   resources :contraceptives
   resources :contraceptive_types
   resources :schedules

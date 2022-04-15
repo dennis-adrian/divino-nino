@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Reservation fees
+
+#reservation_fees
+  - @reservation_fees.each do |reservation_fee|
+    == render reservation_fee
+    p
+      = link_to "Show this reservation fee", reservation_fee
+
+= link_to "New reservation fee", new_reservation_fee_path

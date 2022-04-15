@@ -1,0 +1,22 @@
+= form_with(model: @reservation_fee) do |form|
+  - if @reservation_fee.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@reservation_fee.errors.count, 'error')} prohibited this reservation_fee from being saved:"
+      ul
+        - @reservation_fee.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :type, style: "display: block"
+    = form.text_field :type
+
+  div
+    = form.label :cost, style: "display: block"
+    = form.text_field :cost
+
+  div
+    = form.label :description, style: "display: block"
+    = form.text_area :description
+
+  div
+    = form.submit

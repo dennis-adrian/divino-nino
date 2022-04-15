@@ -1,6 +1,8 @@
 class Patient < ApplicationRecord
   has_many :contraceptives
   has_many :contraceptive_types, through: :contraceptives
+  has_many :reservations
+  has_many :invoices, through: :reservations
   
   enum sexes: {
     male: "male", female: "female", non_binary: "non_binary"

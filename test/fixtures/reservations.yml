@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_made: 2022-04-15
+  patient: one
+  schedule: one
+  reservation_fee: one
+
+two:
+  date_made: 2022-04-15
+  patient: two
+  schedule: two
+  reservation_fee: two

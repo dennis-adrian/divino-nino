@@ -1,0 +1,22 @@
+div id="#{dom_id invoice}"
+  p
+    strong Number:
+    =< invoice.number
+  p
+    strong Creation date:
+    =< invoice.creation_date
+  p
+    strong Due date:
+    =< invoice.due_date
+  p
+    strong Total cost:
+    =< invoice.total_cost
+  p
+    strong Notes:
+    =< invoice.notes
+  p
+    strong Client:
+    =< invoice.client_id
+  p
+    strong Reservation:
+    =< invoice.reservation_id

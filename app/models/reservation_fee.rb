@@ -1,0 +1,2 @@
+class ReservationFee < ApplicationRecord
+end

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  creation_date: 2022-04-15
+  due_date: 2022-04-15
+  total_cost: 1.5
+  notes: MyText
+  client: one
+  reservation: one
+
+two:
+  number: MyString
+  creation_date: 2022-04-15
+  due_date: 2022-04-15
+  total_cost: 1.5
+  notes: MyText
+  client: two
+  reservation: two

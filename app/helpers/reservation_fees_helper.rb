@@ -1,0 +1,2 @@
+module ReservationFeesHelper
+end

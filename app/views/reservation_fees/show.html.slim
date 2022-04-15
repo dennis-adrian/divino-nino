@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @reservation_fee
+
+div
+  => link_to "Edit this reservation fee", edit_reservation_fee_path(@reservation_fee)
+  '|
+  =< link_to "Back to reservation fees", reservation_fees_path
+
+  = button_to "Destroy this reservation fee", @reservation_fee, method: :delete

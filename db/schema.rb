@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_184328) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_203722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,8 +18,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_184328) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "blood_type", ["a_positive", "a_negative", "b_positive", "b_negative", "o_positive", "o_negative", "ab_positive", "ab_negative"]
   create_enum "blood_types", ["a_positive", "a_negative", "b_positive", "b_negative", "o_positive", "o_negative", "ab_positive", "ab_negative"]
+  create_enum "reservation_statuses", ["pending", "confirmed", "cancelled"]
   create_enum "sex", ["male", "female", "non_binary"]
   create_enum "sexes", ["male", "female", "non_binary"]
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name", limit: 100
+    t.string "last_name", limit: 100
+    t.string "nit", limit: 50
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contraceptive_types", force: :cascade do |t|
     t.string "name", limit: 100
@@ -67,6 +76,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_184328) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.string "number", limit: 50
+    t.date "creation_date"
+    t.date "due_date"
+    t.float "total_cost"
+    t.text "notes"
+    t.bigint "client_id", null: false
+    t.bigint "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["reservation_id"], name: "index_invoices_on_reservation_id"
+  end
+
   create_table "offices", force: :cascade do |t|
     t.string "room", limit: 10
     t.bigint "specialty_id", null: false
@@ -96,6 +119,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_184328) do
     t.enum "sex", default: "male", null: false, enum_type: "sexes"
   end
 
+  create_table "reservation_fees", force: :cascade do |t|
+    t.string "type", limit: 50
+    t.float "cost"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.date "date_made"
+    t.bigint "patient_id", null: false
+    t.bigint "schedule_id", null: false
+    t.bigint "reservation_fee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.enum "status", default: "pending", null: false, enum_type: "reservation_statuses"
+    t.index ["patient_id"], name: "index_reservations_on_patient_id"
+    t.index ["reservation_fee_id"], name: "index_reservations_on_reservation_fee_id"
+    t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.date "date"
     t.time "start_time"
@@ -122,7 +166,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_184328) do
   add_foreign_key "contraceptives", "patients"
   add_foreign_key "doctor_specialties", "doctors"
   add_foreign_key "doctor_specialties", "specialties"
+  add_foreign_key "invoices", "clients"
+  add_foreign_key "invoices", "reservations"
   add_foreign_key "offices", "specialties"
+  add_foreign_key "reservations", "patients"
+  add_foreign_key "reservations", "reservation_fees"
+  add_foreign_key "reservations", "schedules"
   add_foreign_key "schedules", "doctors"
   add_foreign_key "schedules", "offices"
   add_foreign_key "schedules", "specialties"

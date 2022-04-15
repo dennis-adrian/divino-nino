@@ -1,0 +1,10 @@
+h1 Editing reservation fee
+
+== render "form", reservation_fee: @reservation_fee
+
+br
+
+div
+  => link_to "Show this reservation fee", @reservation_fee
+  '|
+  =< link_to "Back to reservation fees", reservation_fees_path
