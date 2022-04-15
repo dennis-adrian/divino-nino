@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Schedules
+
+#schedules
+  - @schedules.each do |schedule|
+    == render schedule
+    p
+      = link_to "Show this schedule", schedule
+
+= link_to "New schedule", new_schedule_path

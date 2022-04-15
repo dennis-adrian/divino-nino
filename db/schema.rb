@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_160140) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_161325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_160140) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.date "date"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "is_busy"
+    t.bigint "doctor_id", null: false
+    t.bigint "specialty_id", null: false
+    t.bigint "office_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_schedules_on_doctor_id"
+    t.index ["office_id"], name: "index_schedules_on_office_id"
+    t.index ["specialty_id"], name: "index_schedules_on_specialty_id"
+  end
+
   create_table "specialties", force: :cascade do |t|
     t.string "name", limit: 200
     t.datetime "created_at", null: false
@@ -82,4 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_160140) do
   add_foreign_key "doctor_specialties", "doctors"
   add_foreign_key "doctor_specialties", "specialties"
   add_foreign_key "offices", "specialties"
+  add_foreign_key "schedules", "doctors"
+  add_foreign_key "schedules", "offices"
+  add_foreign_key "schedules", "specialties"
 end
