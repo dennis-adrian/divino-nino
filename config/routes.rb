@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
-  resources :patients
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "main_page#index"
+
+  get 'hello_world', to: 'hello_world#index'
+  resources :patients, :path => :pacientes
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end
