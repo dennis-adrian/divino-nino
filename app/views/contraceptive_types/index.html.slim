@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Contraceptive types
+
+#contraceptive_types
+  - @contraceptive_types.each do |contraceptive_type|
+    == render contraceptive_type
+    p
+      = link_to "Show this contraceptive type", contraceptive_type
+
+= link_to "New contraceptive type", new_contraceptive_type_path

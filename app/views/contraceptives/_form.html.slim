@@ -1,0 +1,22 @@
+= form_with(model: @contraceptive) do |form|
+  - if @contraceptive.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@contraceptive.errors.count, 'error')} prohibited this contraceptive from being saved:"
+      ul
+        - @contraceptive.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :observations, style: "display: block"
+    = form.text_area :observations
+
+  div
+    = form.label :contraceptive_type_id, style: "display: block"
+    = form.text_field :contraceptive_type_id
+
+  div
+    = form.label :patient_id, style: "display: block"
+    = form.text_field :patient_id
+
+  div
+    = form.submit

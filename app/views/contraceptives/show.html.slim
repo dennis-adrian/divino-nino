@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @contraceptive
+
+div
+  => link_to "Edit this contraceptive", edit_contraceptive_path(@contraceptive)
+  '|
+  =< link_to "Back to contraceptives", contraceptives_path
+
+  = button_to "Destroy this contraceptive", @contraceptive, method: :delete

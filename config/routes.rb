@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contraceptives
+  resources :contraceptive_types
   resources :schedules
   resources :offices
   resources :doctors

@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Contraceptives
+
+#contraceptives
+  - @contraceptives.each do |contraceptive|
+    == render contraceptive
+    p
+      = link_to "Show this contraceptive", contraceptive
+
+= link_to "New contraceptive", new_contraceptive_path

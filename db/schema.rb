@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_161325) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_163910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contraceptive_types", force: :cascade do |t|
+    t.string "name", limit: 100
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contraceptives", force: :cascade do |t|
+    t.text "observations"
+    t.bigint "contraceptive_type_id", null: false
+    t.bigint "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contraceptive_type_id"], name: "index_contraceptives_on_contraceptive_type_id"
+    t.index ["patient_id"], name: "index_contraceptives_on_patient_id"
+  end
 
   create_table "doctor_specialties", force: :cascade do |t|
     t.bigint "doctor_id", null: false
@@ -94,6 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_161325) do
     t.text "description"
   end
 
+  add_foreign_key "contraceptives", "contraceptive_types"
+  add_foreign_key "contraceptives", "patients"
   add_foreign_key "doctor_specialties", "doctors"
   add_foreign_key "doctor_specialties", "specialties"
   add_foreign_key "offices", "specialties"
