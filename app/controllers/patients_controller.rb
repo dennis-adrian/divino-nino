@@ -4,6 +4,7 @@ class PatientsController < ApplicationController
   # GET /patients or /patients.json
   def index
     @patients = Patient.all
+    render json: { patients: @patients }
   end
 
   # GET /patients/1 or /patients/1.json
