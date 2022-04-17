@@ -4,6 +4,21 @@ class SchedulesController < ApplicationController
   # GET /schedules or /schedules.json
   def index
     @schedules = Schedule.all
+
+    if params[:specialty_id].present?
+      filtered_schedules = @schedules.select {|x| x.specialty_id == params[:specialty_id].to_i}
+      @schedules = filtered_schedules
+    end
+
+    if params[:available].present?
+      schedules = @schedules.reject(&:is_busy?)
+      render json: {schedules: schedules}, include: {:specialty => {include: :doctors}, doctor: {}, office: {}}
+    elsif params[:busy].present?
+      schedules = @schedules.select(&:is_busy?)
+      render json: {schedules: schedules}, include: {:specialty => {include: :doctors}, doctor: {}, office: {}}
+    else
+      render json: {schedules: @schedules}, include: {:specialty => {include: :doctors}, doctor: {}, office: {}}
+    end
   end
 
   # GET /schedules/1 or /schedules/1.json

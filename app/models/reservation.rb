@@ -4,8 +4,8 @@ class Reservation < ApplicationRecord
   belongs_to :reservation_fee
 
   enum reservation_statuses: {
-    pending: "pending"
-    confirmed: "confirmed"
+    pending: "pending",
+    confirmed: "confirmed",
     cancelled: "cancelled"
   }
 end
