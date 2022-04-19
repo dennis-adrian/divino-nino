@@ -153,6 +153,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    railroady (1.6.0)
     rails (7.0.2.3)
       actioncable (= 7.0.2.3)
       actionmailbox (= 7.0.2.3)
@@ -259,6 +260,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 5.0)
   rack-cors
+  railroady
   rails (~> 7.0.2, >= 7.0.2.3)
   react_on_rails (= 12.0.0)
   selenium-webdriver

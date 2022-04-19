@@ -1,10 +1,11 @@
 class ReservationsController < ApplicationController
+  protect_from_forgery
   before_action :set_reservation, only: %i[ show edit update destroy ]
 
   # GET /reservations or /reservations.json
   def index
     @reservations = Reservation.all
-    render json: { reservations: @reservations }, include: [:schedule, :patient]
+    render json: { reservations: @reservations }, include: {:schedule => {include: :doctor}, patient: {}, specialty: {}}
   end
 
   # GET /reservations/1 or /reservations/1.json
@@ -66,6 +67,13 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:date_made, :patient_id, :schedule_id, :reservation_fee_id)
+      params.require(:reservation).permit(
+        :date_made,
+        :patient_id,
+        :schedule_id,
+        :reservation_fee_id,
+        :status,
+        :specialty_id
+      )
     end
 end
